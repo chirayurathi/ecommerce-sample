@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1> E-Commerce </h1>
+        <ul>
+            <li><a href="./products.html">Products</a></li>
+            <li><a href="./index.html">Purchase</a></li>
+        </ul>
+    </nav>
+    <div class="container cards">
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 1</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 2</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 3</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 4</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 5</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 6</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 7</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                <img src="./images/1.jpeg" alt="">
+            </div>
+            <div class="text-container">
+                <div class="title">Product 8</div>
+                <div class="description">Description</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const displayText = (index)=>{
+            let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = ()=>{
+                    console.log(xhr.status)
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText)
+                        document.querySelectorAll('.description')[index].innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open("GET", `data/${index + 1}.txt`, true);
+                xhr.send();
+        }
+        document.querySelectorAll('.card-container').forEach((e,index)=>{
+            console.log(e)
+            e.onmouseover = ()=>{displayText(index)}
+        })
+    </script>
+</body>
+</html>

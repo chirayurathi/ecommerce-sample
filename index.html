@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IWP DA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav>
+        <h1> E-Commerce </h1>
+        <ul>
+            <li><a href="./products.html">Products</a></li>
+            <li><a href="./index.html">Purchase</a></li>
+        </ul>
+    </nav>
+    <div class="container">  
+        <form id="contact">
+          <h3>Purchase Form</h3>
+          <h4>Enter The Product Details You Want To Purchase</h4>
+          <fieldset id = "code">
+            <input placeholder="Product ID 1" type="text"  required autofocus>
+            <span> - </span>
+            <input placeholder="Product ID 2" type="text"  required autofocus>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Product Name" type="text"  required>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <select placeholder="Quantity" required>
+                <option value="0" selected>Quantity</option>
+                <option value="1">1</option>
+                <option value="2" >2</option>
+                <option value="3" >3</option>
+                <option value="4" >4</option>
+                <option value="5" >5</option>
+                <option value="6" >6</option>
+                <option value="7" >7</option>
+                <option value="8" >8</option>
+                <option value="9" >9</option>
+                <option value="10" >10</option>
+            </select>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <input placeholder="price" type="number"  required>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Total value" type="number"  required>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Date Of Purchase" type="date"  required>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Mobile No." type="number"  required>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Email" type="email"  required>
+            <span class="helper"></span>
+          </fieldset>
+          <fieldset>
+            <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            <span class="helper"></span>
+          </fieldset>
+        </form>
+      </div>
+    <script>
+        document.querySelectorAll('button').forEach((q,index)=>{
+            q.onclick = ()=>{
+                let xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = ()=>{
+                    console.log(xhr.status)
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                        console.log(xhr.responseText)
+                        document.getElementById("demo").innerHTML = xhr.responseText;
+                    }
+                };
+                xhr.open("GET", `data/test${index + 1}.txt`, true);
+                xhr.send();
+            }
+        })
+    </script>
+</body>
+</html>
