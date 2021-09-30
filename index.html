@@ -78,8 +78,8 @@
                 <h3 class="acc-title">CASH ON DELIVERY</h3>
                 <div class="acc-content">
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Facere magnam perspiciatis odio iste iure ab a hic laboriosam nulla, unde officiis aperiam vero, ut aspernatur ipsam excepturi dignissimos quisquam mollitia modi. Repudiandae est architecto, quisquam assumenda amet excepturi, expedita velit?</p>
-                </div><!-- acc-content -->
-            </div><!-- acc-container -->
+                </div>
+            </div>
     
             <div class="acc-container">
                 <h3 class="acc-title">UPI</h3>
@@ -91,7 +91,7 @@
             <div class="acc-container">
                 <h3 class="acc-title">EMI</h3>
                 <div class="acc-content">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Facere magnam perspiciatis odio iste iure ab a hic laboriosam nulla, unde officiis aperiam vero, ut aspernatur ipsam excepturi dignissimos quisquam mollitia modi. Repudiandae est architecto, quisquam assumenda amet excepturi, expedita velit?</p>
+                <ul id="emi"></ul>
                 </div>
             </div>
             <div class="acc-container">
@@ -202,6 +202,11 @@
               }
               else{
                 document.querySelector('.wrapper').style.display = "block"
+                document.getElementById("emi").innerHTML = `
+                <li>EMI FOR 6 months: ${total/6}/month</li>
+                <li>EMI FOR 9 months: ${total/9}/month</li>
+                <li>EMI FOR 12 months: ${total/12}/month</li>
+                `
               }
           }
 
