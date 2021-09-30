@@ -40,10 +40,14 @@ nav ul{
     align-items: center;
     font-size: 1.2em;
 }
-.helper{
+#contact #code span.helper{
     width: 100% !important;
-    display: none !important;
-    height: 10px !important;
+    display: none;
+    height: 15px !important;
+    font-size: 12px;
+    font-weight: 100;
+    color: black;
+    text-align: left;
 }
 nav ul a{
     color: inherit;
