@@ -70,6 +70,41 @@
           </fieldset>
         </form>
       </div>
+      <div class="wrapper">
+        <h1>Accordion</h1>
+        <h3>Accordion: Only One Item Open</h3>
+        <div class="accordion acc-single-open">
+            <div class="acc-container">
+                <h3 class="acc-title">CASH ON DELIVERY</h3>
+                <div class="acc-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Facere magnam perspiciatis odio iste iure ab a hic laboriosam nulla, unde officiis aperiam vero, ut aspernatur ipsam excepturi dignissimos quisquam mollitia modi. Repudiandae est architecto, quisquam assumenda amet excepturi, expedita velit?</p>
+                </div><!-- acc-content -->
+            </div><!-- acc-container -->
+    
+            <div class="acc-container">
+                <h3 class="acc-title">UPI</h3>
+                <div class="acc-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Facere magnam perspiciatis odio iste iure ab a hic laboriosam nulla, unde officiis aperiam vero, ut aspernatur ipsam excepturi dignissimos quisquam mollitia modi. Repudiandae est architecto, quisquam assumenda amet excepturi, expedita velit?</p>
+                    </div>
+            </div>
+    
+            <div class="acc-container">
+                <h3 class="acc-title">EMI</h3>
+                <div class="acc-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Facere magnam perspiciatis odio iste iure ab a hic laboriosam nulla, unde officiis aperiam vero, ut aspernatur ipsam excepturi dignissimos quisquam mollitia modi. Repudiandae est architecto, quisquam assumenda amet excepturi, expedita velit?</p>
+                </div>
+            </div>
+            <div class="acc-container">
+                <h3 class="acc-title">DEBIT CARD</h3>
+                <div class="acc-content">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing, elit. Facere magnam perspiciatis odio iste iure ab a hic laboriosam nulla, unde officiis aperiam vero, ut aspernatur ipsam excepturi dignissimos quisquam mollitia modi. Repudiandae est architecto, quisquam assumenda amet excepturi, expedita velit?</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+        
+    </div>
       <script>
           document.querySelector('button').onclick = (e)=>{
               e.preventDefault();
@@ -77,15 +112,18 @@
               let code2 = document.getElementById("code2").value
               let re1 = /^[a-z]*/i
               let re2 = /^[0-9]*/i
+              let flag = false;
               if((!re1.test(code1)) || code1.length!==3){
                 console.log(code1)
                 document.querySelector('#code .helper').innerHTML = "Input must be of 3 and 6 characters respectively."
                 document.querySelector('#code .helper').style.display = "block"
+                flag = true;
               }
               if((!re2.test(code2)) || code2.toString().length!==6){
                   console.log(code2)
                 document.querySelector('#code .helper').innerHTML = "Input must be of 3 and 6 characters respectively."
                 document.querySelector('#code .helper').style.display = "block"
+                flag = true;
               }
               if(re2.test(code2) && code2.toString().length===6 && re1.test(code1) && code1.length===3){
                 document.querySelector('#code .helper').style.display = "none";
@@ -94,6 +132,7 @@
               if(!(name<50 && name>0)){
                 document.querySelector('#name .helper').innerHTML = "Input must be of 1-50 characters"
                 document.querySelector('#name .helper').style.display = "block" 
+                flag = true
               }
               else{
                 document.querySelector('#name .helper').style.display = "none"
@@ -102,6 +141,7 @@
               if((qty===0)){
                 document.querySelector('#qty .helper').innerHTML = "Select A value from dropdown"
                 document.querySelector('#qty .helper').style.display = "block" 
+                flag = true;
               }
               else{
                 document.querySelector('#qty .helper').style.display = "none"
@@ -110,6 +150,7 @@
               if(!(price>100 && price<10000)){
                 document.querySelector('#price .helper').innerHTML = "price should be less than 10000 and more than 100"
                 document.querySelector('#price .helper').style.display = "block" 
+                flag = true;
               }
               else{
                 document.querySelector('#price .helper').style.display = "none"
@@ -118,6 +159,7 @@
               if((total!==qty*price)){
                 document.querySelector('#total .helper').innerHTML = "total should be equal to price * quantity"
                 document.querySelector('#total .helper').style.display = "block" 
+                flag = true;
               }
               else{
                 document.querySelector('#total .helper').style.display = "none"
@@ -128,6 +170,7 @@
                 console.log(date)
                 document.querySelector('#date .helper').innerHTML = "Invalid Date"
                 document.querySelector('#date .helper').style.display = "block"
+                flag = true;
               }
               else{
                 document.querySelector('#date .helper').style.display = "none"
@@ -140,6 +183,7 @@
                 console.log(mobile)
                 document.querySelector('#mobile .helper').innerHTML = "Invalid Number"
                 document.querySelector('#mobile .helper').style.display = "block"
+                flag = true;
               }
               else{
                 document.querySelector('#mobile .helper').style.display = "none"
@@ -148,11 +192,38 @@
                   console.log(email)
                 document.querySelector('#email .helper').innerHTML = "Invalid Email."
                 document.querySelector('#email .helper').style.display = "block"
+                flag = true;
               }
               else{
                 document.querySelector('#email .helper').style.display = "none"
               }
+              if(flag){
+                  document.querySelector('.wrapper').style.display = "none"
+              }
+              else{
+                document.querySelector('.wrapper').style.display = "block"
+              }
           }
-      </script>
+
+	function initAccordion(elem, option){
+		document.addEventListener('click', function (e) {
+			if (!e.target.matches(elem+' .acc-title')) return;
+			else {
+				if(!e.target.parentElement.classList.contains('acc-active')) {
+					if(option==true) {
+						var elementList = document.querySelectorAll(elem+' .acc-container');
+						Array.prototype.forEach.call(elementList, function (e) {
+	                        e.classList.remove('acc-active');
+						});
+					}
+					e.target.parentElement.classList.add('acc-active');
+				} else {
+					e.target.parentElement.classList.remove('acc-active');
+				}
+			}
+		});
+	}
+	initAccordion('.accordion.acc-single-open', true);
+    </script>
 </body>
 </html>
